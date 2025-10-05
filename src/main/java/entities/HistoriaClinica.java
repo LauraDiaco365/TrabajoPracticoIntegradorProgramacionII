@@ -1,3 +1,7 @@
+package entities;
+
+import *;
+
 public class HistoriaClinica {
     private int idHistoria;
     private boolean eliminado;
