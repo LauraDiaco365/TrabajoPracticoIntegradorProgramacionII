@@ -1,5 +1,4 @@
-package dao;
-
+package com.mycompany.trabajopractico.dao;
 import java.sql.Connection;
 import java.util.List;
 

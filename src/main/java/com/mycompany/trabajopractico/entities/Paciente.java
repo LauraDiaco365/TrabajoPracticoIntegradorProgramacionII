@@ -1,6 +1,5 @@
-package entities;
+package com.mycompany.trabajopractico.entities;
 
-import *;
 import java.time.LocalDate;
 
 public class Paciente {

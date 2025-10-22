@@ -1,6 +1,5 @@
-package entities;
+package com.mycompany.trabajopractico.entities;
 
-import *;
 
 public class HistoriaClinica {
     private int idHistoria;

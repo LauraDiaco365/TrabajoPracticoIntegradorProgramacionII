@@ -1,8 +1,11 @@
-package dao;
+package com.mycompany.trabajopractico.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.mycompany.trabajopractico.entities.Paciente;
+import com.mycompany.trabajopractico.entities.HistoriaClinica;
+
 
 public class PacienteDAO implements GenericDao<Paciente> {
 
@@ -84,12 +87,35 @@ public class PacienteDAO implements GenericDao<Paciente> {
         }
     }
 
-    @Override
-    public void eliminarLogico(int id, Connection conn) throws Exception {
-        String sql = "UPDATE paciente SET eliminado = true WHERE id_paciente = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        }
+@Override
+public void eliminarLogico(int id, Connection conn) throws Exception {
+    String sql = "UPDATE paciente SET eliminado = true WHERE id_paciente = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
     }
 }
+
+// Consulta segura por DNI para prevenir inyección SQL
+public Paciente buscarPorDni(String dni, Connection conn) throws Exception {
+    String sql = "SELECT * FROM paciente WHERE dni = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, dni);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            HistoriaClinicaDAO daoHistoria = new HistoriaClinicaDAO();
+            HistoriaClinica historia = daoHistoria.leer(rs.getInt("id_historia"), conn);
+            return new Paciente(
+                rs.getInt("id_paciente"),
+                rs.getString("nombre"),
+                rs.getString("apellido"),
+                rs.getString("dni"),
+                rs.getDate("fecha_nacimiento").toLocalDate(),
+                rs.getBoolean("eliminado"),
+                historia
+            );
+        }
+    }
+    return null;
+}
+} 

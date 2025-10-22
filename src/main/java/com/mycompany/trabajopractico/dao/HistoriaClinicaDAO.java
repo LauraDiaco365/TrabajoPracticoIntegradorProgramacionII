@@ -1,8 +1,10 @@
-package dao;
+package com.mycompany.trabajopractico.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.mycompany.trabajopractico.entities.HistoriaClinica;
+
 
 public class HistoriaClinicaDAO implements GenericDao<HistoriaClinica> {
 

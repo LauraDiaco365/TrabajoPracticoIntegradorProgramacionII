@@ -1,4 +1,4 @@
-package config;
+package com.mycompany.trabajopractico.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

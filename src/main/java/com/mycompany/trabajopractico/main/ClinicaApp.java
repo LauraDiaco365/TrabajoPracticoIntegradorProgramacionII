@@ -1,10 +1,15 @@
-package main;
+package com.mycompany.trabajopractico.main;
 
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-import config.DatabaseConnection;
+import com.mycompany.trabajopractico.dao.PacienteDAO;
+import com.mycompany.trabajopractico.dao.HistoriaClinicaDAO;
+import com.mycompany.trabajopractico.entities.Paciente;
+import com.mycompany.trabajopractico.entities.HistoriaClinica;
+import com.mycompany.trabajopractico.config.DatabaseConnection;
+
 
 
 public class ClinicaApp {
